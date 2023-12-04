@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             <header className="w-full">
               <Navbar />
             </header>
-            <main className="w-7xl h-full">{children}</main>
+            <main className="w-7xl h-full mt-4">{children}</main>
           </div>
           <Footer />
         </StoreProvider>
