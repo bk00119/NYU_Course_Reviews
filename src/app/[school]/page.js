@@ -7,8 +7,8 @@ import PageDir from "@components/pageDir"
 
 export default function SchoolPage() {
   const dispatch = useDispatch()
-  const school = useSelector((state) => {
-    return state.course.school
+  const school = useSelector(({courseDetails: {school}}) => {
+    return school
   })
 
   const [subjectList, setSubjectList] = useState([])
@@ -16,7 +16,7 @@ export default function SchoolPage() {
 
   useEffect(() => {
     async function getSubjects() {
-      const res = await fetch("/api/subjects", {
+      const res = await fetch(`/api/school/getSchoolSubjects?school_id=${school._id}`, {
         method: "GET",
       })
       const data = await res.json()
@@ -24,14 +24,7 @@ export default function SchoolPage() {
       setLoading(false)
     }
 
-    async function getSchool(school_name) {
-      const res = await fetch(`/api/getSchool?school_name=${school_name}`, {
-        method: "GET",
-      })
-      const data = await res.json()
-      dispatch(updateSchool(data))
-    }
-    if (isLoading) {
+    if (isLoading && school) {
       getSubjects().catch(console.error)
     }
     if(!school){
@@ -46,15 +39,11 @@ export default function SchoolPage() {
   return (
     <div>
       <PageDir />
-
-      {/* REMOVE THIS */}
-      {school && school.name}
-
       <div className="w-full grid grid-cols-2">
         {subjectList.map((subject, index) => (
           <div className="w-full my-2" key={index}>
             <Link
-              href={`/${subject.name}`}
+              href={`${school.name}/${subject.code}: ${subject.name}`}
               onClick={() => handleSubjectChange(subject)}
               className="border-b border-black text-xl"
             >

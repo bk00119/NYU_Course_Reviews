@@ -1,31 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const courseSlice = createSlice({
-  name: "course",
+const courseDetailsSlice = createSlice({
+  name: "courseDetails",
   initialState: {
     school: null,
     subject: null,
     course: null,
+    section: null,
   },
   reducers: {
     updateSchool(state, action) {
       state.school = action.payload
     },
     resetSchool(state, action) {
-      state.school = {}
+      state.school = null
     },
     updateSubject(state, action) {
       state.subject = action.payload
     },
     resetSubject(state, action) {
-      state.subject = {}
+      state.subject = null
     },
     updateCourse(state, action) {
       state.course = action.payload
     },
     resetCourse(state, action) {
-      state.course = {}
+      state.course = null
     },
+    updateSection(state, action){
+      state.section = action.payload
+    },
+    resetSection(state, action){
+      state.section = null
+    }
   },
 })
 
@@ -36,5 +43,7 @@ export const {
   resetSubject,
   updateCourse,
   resetCourse,
-} = courseSlice.actions
-export const courseReducer = courseSlice.reducer
+  updateSection,
+  resetSection
+} = courseDetailsSlice.actions
+export const courseDetailsReducer = courseDetailsSlice.reducer

@@ -3,20 +3,22 @@ import { createWrapper } from "next-redux-wrapper"
 
 import { reviewReducer, updateYear } from "./slices/reviewSlice"
 import {
-  courseReducer,
   updateSchool,
   resetSchool,
   updateSubject,
   resetSubject,
   updateCourse,
   resetCourse,
+  updateSection,
+  resetSection,
+  courseDetailsReducer,
 } from "./slices/courseSlice"
 
 export function makeStore() {
   return configureStore({
     reducer: {
       review: reviewReducer,
-      course: courseReducer,
+      courseDetails: courseDetailsReducer,
     },
   })
 }
@@ -31,4 +33,6 @@ export {
   resetSubject,
   updateCourse,
   resetCourse,
+  updateSection,
+  resetSection,
 }

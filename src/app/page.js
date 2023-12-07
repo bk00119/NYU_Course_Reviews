@@ -7,8 +7,8 @@ import PageDir from "@components/pageDir"
 
 export default function Home() {
   const dispatch = useDispatch()
-  const school = useSelector((state) => {
-    return state.course.school
+  const school = useSelector(({courseDetails: {school}}) => {
+    return school
   })
 
   const [schoolList, setSchoolList] = useState([])
@@ -16,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     async function getSchools() {
-      const res = await fetch("/api/schools", {
+      const res = await fetch("/api/school/schools", {
         method: "GET",
       })
       const data = await res.json()

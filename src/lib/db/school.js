@@ -29,6 +29,12 @@ export async function getSchools() {
   }
 }
 
-export async function getSchool(){
-  return { data: {}}
+export async function getSchool({ school_name }) {
+  try {
+    if (!schools) await init()
+    const res = await schools.findOne({ name: school_name })
+    return { data: res }
+  } catch (error) {
+    return { error: `Failed to fetch school: ${school_name}` }
+  }
 }

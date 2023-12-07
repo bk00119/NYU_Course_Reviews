@@ -1,10 +1,59 @@
-import PageDir from "@components/pageDir";
+"use client"
+import Link from "next/link"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import { updateCourse } from "@/lib/store"
+import PageDir from "@components/pageDir"
 
-export default function SubjectPage(){
+export default function SubjectPage() {
+  const dispatch = useDispatch()
+  const subject = useSelector(({ courseDetails: { subject } }) => {
+    return subject
+  })
+
+  const [courseList, setCourseList] = useState([])
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function getCourses() {
+      const res = await fetch(
+        `/api/subject/getSubjectCourses?subject_id=${subject._id}`,
+        {
+          method: "GET",
+        }
+      )
+      const data = await res.json()
+      setCourseList(data)
+      setLoading(false)
+    }
+
+    if (isLoading && subject) {
+      getCourses().catch(console.error)
+    }
+    if (!subject) {
+    }
+  }, [subject])
+
+  function handleSubjectChange(val) {
+    dispatch(updateCourse(val))
+  }
+
   return (
     <div>
       <PageDir />
-      SubjectPage
+      <div className="w-full grid grid-cols-2">
+        {courseList.map((course, index) => (
+          <div className="w-full my-2" key={index}>
+            <Link
+              href={`./${subject.code}: ${subject.name}/${course.full_code}`}
+              onClick={() => handleSubjectChange(course)}
+              className="border-b border-black text-xl"
+            >
+              {course.name}
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
