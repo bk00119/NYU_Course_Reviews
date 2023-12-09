@@ -30,11 +30,11 @@ export default function SubjectPage() {
     if (isLoading && subject) {
       getCourses().catch(console.error)
     }
-    if (!subject) {
-    }
+    // if (!subject) {
+    // }
   }, [subject])
 
-  function handleSubjectChange(val) {
+  function handleCourseChange(val) {
     dispatch(updateCourse(val))
   }
 
@@ -46,7 +46,7 @@ export default function SubjectPage() {
           <div className="w-full my-2" key={index}>
             <Link
               href={`./${subject.code}: ${subject.name}/${course.full_code}`}
-              onClick={() => handleSubjectChange(course)}
+              onClick={() => handleCourseChange(course)}
               className="border-b border-black text-xl"
             >
               {course.name}

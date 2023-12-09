@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       colors: {
         'violet': '#57068C',
-        'violet-medium': '#7B5AA6'
+        'violet-medium': '#7B5AA6',
+        'gray-stroke': '#BDBDBD',
       },
       width: {
         '7xl': '80rem'

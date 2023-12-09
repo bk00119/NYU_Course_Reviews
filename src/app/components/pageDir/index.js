@@ -57,7 +57,7 @@ export default function PageDir() {
   }, [school_name, subject, course_full_code])
 
   return (
-    <div className="text-2xl font-bold mb-4">
+    <div className="text-2xl font-bold mb-6">
       <Link href="/" className="border-b-2 border-black">
         Schools
       </Link>
