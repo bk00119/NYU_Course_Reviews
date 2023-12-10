@@ -46,11 +46,29 @@ export async function getSubjectCourses({ subject_id }) {
 
 export async function getCourseByFullCode({ full_code }) {
   try {
-    if(!courses) await init()
-    const res = await courses
-      .findOne({ full_code: full_code })
-      return { data: res }
+    if (!courses) await init()
+    const res = await courses.findOne({ full_code: full_code })
+    return { data: res }
   } catch (error) {
-    return { error: `Failed to fetch course details of ${full_code}.`}
+    return { error: `Failed to fetch course details of ${full_code}.` }
+  }
+}
+
+export async function getCourseById({ course_id }) {
+  const projection = {
+    _id: 1,
+    full_code: 1,
+    name: 1,
+  }
+
+  try {
+    if (!courses) await init()
+    const res = await courses.findOne(
+      { _id: new ObjectId(course_id) },
+      { projection }
+    )
+    return { data: res }
+  } catch (error) {
+    return { error: `Failed to fetch course details of ${course_id}.` }
   }
 }

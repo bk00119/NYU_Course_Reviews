@@ -61,3 +61,50 @@ export async function getBriefCourseSectionReviews({ course_section_id }) {
     }
   }
 }
+
+export async function getCourseSectionReviews({ course_section_id }) {
+  try {
+    if (!course_sections_reviews) await init()
+    const res = await course_sections_reviews
+      // .find({ course_id: new ObjectId(course_id) })
+      // .toArray()
+      .aggregate([
+        {
+          $match: { course_section_id: new ObjectId(course_section_id) },
+        },
+        {
+          $group: {
+            _id: {
+              course_section_id: "$course_section_id",
+            },
+            avg_rating: { $avg: "$rating" },
+            difficulty_level: { $avg: "$difficulty_level"},
+            count: { $sum: 1 },
+            reviews: { $push: "$$ROOT" },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            avg_rating: 1,
+            difficulty_level: 1,
+            count: 1,
+            reviews: 1
+          },
+        },
+      ])
+      .toArray()
+      // LIMIT TO LOAD MORE
+
+    // if no data found
+    if (res.length == 0) {
+      // throw new Error()
+      return { data: {} }
+    }
+    return { data: res[0] }
+  } catch (error) {
+    return {
+      error: `Failed to fetch brief reviews of course section (${course_section_id}).`,
+    }
+  }
+}

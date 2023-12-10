@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { updateSchool } from "@/lib/store"
 import PageDir from "@components/pageDir"
+import Loading from "@components/loading"
+import LoadArrayResult from "./components/loadArrayResult"
 
 export default function Home() {
   const dispatch = useDispatch()
-  const school = useSelector(({courseDetails: {school}}) => {
+  const school = useSelector(({ courseDetails: { school } }) => {
     return school
   })
 
@@ -35,19 +37,25 @@ export default function Home() {
   return (
     <div>
       <PageDir />
-      <div className="w-full">
-        {schoolList.map((school, index) => (
-          <div className="w-full my-4" key={index}>
-            <Link
-              href={`/${school.name}`}
-              onClick={() => handleSchoolChange(school)}
-              className="border-b border-black text-xl"
-            >
-              {school.name}
-            </Link>
-          </div>
-        ))}
-      </div>
+      <LoadArrayResult
+        isLoading={isLoading}
+        data={schoolList}
+        message="No school"
+      >
+        <div className="w-full">
+          {schoolList.map((school, index) => (
+            <div className="w-full my-4" key={index}>
+              <Link
+                href={`/${school.name}`}
+                onClick={() => handleSchoolChange(school)}
+                className="border-b border-black text-xl"
+              >
+                {school.name}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </LoadArrayResult>
     </div>
   )
 }

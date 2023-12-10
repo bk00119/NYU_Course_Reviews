@@ -7,6 +7,7 @@ const courseDetailsSlice = createSlice({
     subject: null,
     course: null,
     section: null,
+    reviews: null
   },
   reducers: {
     updateSchool(state, action) {
@@ -32,6 +33,12 @@ const courseDetailsSlice = createSlice({
     },
     resetSection(state, action){
       state.section = null
+    },
+    updateReviews(state, action) {
+      state.reviews = action.payload
+    },
+    resetReviews(state, action) {
+      state.reviews = null
     }
   },
 })
@@ -44,6 +51,8 @@ export const {
   updateCourse,
   resetCourse,
   updateSection,
-  resetSection
+  resetSection,
+  updateReviews,
+  resetReviews
 } = courseDetailsSlice.actions
 export const courseDetailsReducer = courseDetailsSlice.reducer

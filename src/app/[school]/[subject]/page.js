@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { updateCourse } from "@/lib/store"
 import PageDir from "@components/pageDir"
+import LoadArrayResult from "@components/loadArrayResult"
 
 export default function SubjectPage() {
   const dispatch = useDispatch()
@@ -41,7 +42,26 @@ export default function SubjectPage() {
   return (
     <div>
       <PageDir />
-      <div className="w-full grid grid-cols-2">
+      <LoadArrayResult
+        isLoading={isLoading}
+        data={courseList}
+        message="No course"
+      >
+        <div className="w-full grid grid-cols-2">
+          {courseList.map((course, index) => (
+            <div className="w-full my-2" key={index}>
+              <Link
+                href={`./${subject.code}: ${subject.name}/${course.full_code}`}
+                onClick={() => handleCourseChange(course)}
+                className="border-b border-black text-xl"
+              >
+                {course.name}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </LoadArrayResult>
+      {/* <div className="w-full grid grid-cols-2">
         {courseList.map((course, index) => (
           <div className="w-full my-2" key={index}>
             <Link
@@ -53,7 +73,7 @@ export default function SubjectPage() {
             </Link>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

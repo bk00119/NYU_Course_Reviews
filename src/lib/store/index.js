@@ -11,6 +11,8 @@ import {
   resetCourse,
   updateSection,
   resetSection,
+  updateReviews,
+  resetReviews,
   courseDetailsReducer,
 } from "./slices/courseSlice"
 
@@ -35,4 +37,6 @@ export {
   resetCourse,
   updateSection,
   resetSection,
+  updateReviews,
+  resetReviews
 }

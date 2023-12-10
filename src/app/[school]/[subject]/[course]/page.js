@@ -1,13 +1,13 @@
 "use client"
 
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { updateSection } from "@/lib/store"
 import PageDir from "@components/pageDir"
 import SectionAccordion from "@components/section_accordion"
+import SectionTitle from "@/app/components/sectionTitle"
 
 export default function CoursePage() {
-  const dispatch = useDispatch()
   const course = useSelector((state) => {
     return state.courseDetails.course
   })
@@ -33,27 +33,18 @@ export default function CoursePage() {
     }
   }, [course])
 
-  function handleSectionChange(val) {
-    dispatch(updateSection(val))
-  }
+  // function handleSectionChange(val) {
+  //   dispatch(updateSection(val))
+  // }
 
   return (
     <div>
       <PageDir />
       {course && (
         <div>
-          {/*TOP COURSE FULL_CODE & NAME & WRITE A REVIEW BUTTON */}
-          <div>
-            <h1 className="text-2xl mb-4">
-              {course.full_code}: {course.name}
-            </h1>
-
-            {/* WRITE A REVIEW - BUTTON */}
-          </div>
-
           {/* COURSE GENERAL INFO */}
           <div className="text-xl mb-4">
-            <h4 className="font-bold">General Information</h4>
+            <SectionTitle>General Information</SectionTitle>
             <ul className="ps-8 list-disc list-outside">
               <li>Units: {course.units}</li>
               <li>
@@ -73,13 +64,15 @@ export default function CoursePage() {
             {sectionList.map((term, index) => (
               <div key={index} className="mb-4">
                 {/* SECTION TERM (SEMESTER/YEAR) */}
-                <h4 className="text-xl font-bold mb-2">
-                  {term.semester} {term.year}
-                </h4>
-                <table className="border-[1px] border-collapse w-full ">
-                {term.sections.map((section) => (
-                    <SectionAccordion course={course} section={section} key={section._id} />
-                ))}
+                <SectionTitle>{term.semester} {term.year}</SectionTitle>
+                <table className="mt-2 border-[1px] border-collapse w-full ">
+                  {term.sections.map((section) => (
+                    <SectionAccordion
+                      course={course}
+                      section={section}
+                      key={section._id}
+                    />
+                  ))}
                 </table>
               </div>
             ))}
