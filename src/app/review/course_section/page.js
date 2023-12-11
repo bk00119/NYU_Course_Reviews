@@ -6,15 +6,15 @@ import { useState, useEffect } from "react"
 
 export default function CourseSectionReviewPage(props) {
   const searchParams = useSearchParams()
-  const router = useRouter()
+  // const router = useRouter()
 
   const course_id = searchParams.get("course_id")
   const section_id = searchParams.get("section_id")
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    router.back()
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault()
+  //   router.back()
+  // }
 
   const [course, setCourse] = useState(null)
   const [section, setSection] = useState(null)
@@ -54,18 +54,7 @@ export default function CourseSectionReviewPage(props) {
       <div>
         {/* COURSE FULL_CODE & NAME */}
         <h3 className="text-2xl font-bold mb-4">Rate: {course.full_code} - {course.name}</h3>
-
-        <CourseSectionReviewForm />
-
-
-        {/* SUBMIT BUTTON */}
-        {/* <button
-          type="submit"
-          onClick={handleSubmit}
-          className="text-xl p-3 bg-violet text-white rounded-lg"
-        >
-          Submit review
-        </button> */}
+        <CourseSectionReviewForm section={section} />
       </div>
     )
   )

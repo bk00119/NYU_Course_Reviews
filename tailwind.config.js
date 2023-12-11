@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         'violet': '#57068C',
         'violet-medium': '#7B5AA6',
+        'violet-focus': '#7A27B0',
         'gray-stroke': '#BDBDBD',
       },
       width: {

@@ -73,12 +73,15 @@ export async function getCourseSectionReviews({ course_section_id }) {
           $match: { course_section_id: new ObjectId(course_section_id) },
         },
         {
+          $sort: { date: -1 }
+        },
+        {
           $group: {
             _id: {
               course_section_id: "$course_section_id",
             },
             avg_rating: { $avg: "$rating" },
-            difficulty_level: { $avg: "$difficulty_level"},
+            difficulty_level: { $avg: "$difficulty_level" },
             count: { $sum: 1 },
             reviews: { $push: "$$ROOT" },
           },
@@ -89,12 +92,12 @@ export async function getCourseSectionReviews({ course_section_id }) {
             avg_rating: 1,
             difficulty_level: 1,
             count: 1,
-            reviews: 1
+            reviews: 1,
           },
         },
       ])
       .toArray()
-      // LIMIT TO LOAD MORE
+    // LIMIT TO LOAD MORE
 
     // if no data found
     if (res.length == 0) {
