@@ -90,12 +90,6 @@ export default function SectionPage() {
                   <h4 className="mr-1">Comment:</h4>
                   <h4>{review.comment}</h4>
                 </div>
-
-                {/* LEVEL OF DIFFICULTY */}
-
-                {/* GRADE */}
-
-                {/* COMMENT */}
               </div>
             ))}
           </div>

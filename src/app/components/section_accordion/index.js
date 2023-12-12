@@ -36,7 +36,7 @@ export default function SectionAccordion({ course, section }) {
             className="w-full flex justify-between items-center"
             onClick={hanldeAccordion}
           >
-            <h4 className="text-xl">
+            <h4 className="text-xl text-left">
               Section {section.section} - {section.instructor}
             </h4>
             {isExpanded ? (

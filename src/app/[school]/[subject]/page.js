@@ -47,9 +47,9 @@ export default function SubjectPage() {
         data={courseList}
         message="No course"
       >
-        <div className="w-full grid grid-cols-2">
+        <div className="w-full grid md:grid-cols-2">
           {courseList.map((course, index) => (
-            <div className="w-full my-2" key={index}>
+            <div className="w-full mb-4" key={index}>
               <Link
                 href={`./${subject.code}: ${subject.name}/${course.full_code}`}
                 onClick={() => handleCourseChange(course)}

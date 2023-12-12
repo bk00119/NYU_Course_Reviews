@@ -44,7 +44,7 @@ export default function Home() {
       >
         <div className="w-full">
           {schoolList.map((school, index) => (
-            <div className="w-full my-4" key={index}>
+            <div className="w-full mb-4" key={index}>
               <Link
                 href={`/${school.name}`}
                 onClick={() => handleSchoolChange(school)}

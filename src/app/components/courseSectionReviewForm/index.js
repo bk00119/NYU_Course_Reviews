@@ -97,7 +97,7 @@ export default function CourseSectionReviewForm(props) {
               <SectionDivider className="mb-4" />
 
               {/* COURSE RATING */}
-              <div className="flex mb-4">
+              <div className="flex mb-4 flex-col md:flex-row">
                 <SectionTitle className="mb-0">Course Rating*</SectionTitle>
                 <Rating
                   rating={courseRating}
@@ -107,7 +107,7 @@ export default function CourseSectionReviewForm(props) {
               </div>
 
               {/* LEVEL OF DIFFICULTY */}
-              <div className="flex mb-4">
+              <div className="flex mb-4 flex-col md:flex-row">
                 <SectionTitle className="mb-0">
                   Level of Difficulty*
                 </SectionTitle>

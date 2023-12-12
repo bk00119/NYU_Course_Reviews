@@ -101,7 +101,7 @@ export default function PageDir() {
   }
 
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <div className="text-2xl font-bold mb-6">
         <Link href="/" className="border-b-2 border-black">
           Schools
@@ -129,8 +129,8 @@ export default function PageDir() {
 
       {/* COURSE FULL_CODE & NAME & WRITE A REVIEW BUTTON */}
       {course_full_code && courseDetails.course && (
-        <div className="flex justify-between items-center">
-          <h1 className="text-2xl mb-4">
+        <div className="flex justify-between items-start flex-col mb-4 md:flex-row md:items-center">
+          <h1 className="text-2xl mb-4 md:mb-0">
             <Link
               href={`/${school_name}/${subject}/${course_full_code}`}
               className="border-b-2 border-black"

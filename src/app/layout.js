@@ -18,11 +18,11 @@ export default function RootLayout({ children }) {
         className={`${inter.className} + min-h-screen flex flex-col justify-between`}
       >
         <StoreProvider>
-          <div className="w-full flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col justify-center items-center mb-4">
             <header className="w-full">
               <Navbar />
             </header>
-            <main className="w-7xl h-full mt-4">{children}</main>
+            <main className="h-full mt-4 w-full max-w-7xl px-4">{children}</main>
           </div>
           <Footer />
         </StoreProvider>

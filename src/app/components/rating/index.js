@@ -19,7 +19,7 @@ export default function Rating({
 
   return (
     <div className="flex ml-4">
-      <p className="text-sm mt-2">1 - {options[0]}</p>
+      <p className="text-sm mt-2 hidden md:block">1 - {options[0]}</p>
       <div className="flex flex-col items-center mx-2">
         <div
           className="flex h-9 items-center mb-1"
@@ -96,7 +96,7 @@ export default function Rating({
           <p>Please rate</p>
         )}
       </div>
-      <p className="ml-2 text-sm mt-2">5 - {options[4]}</p>
+      <p className="ml-2 text-sm mt-2 hidden md:block">5 - {options[4]}</p>
     </div>
   )
 }
